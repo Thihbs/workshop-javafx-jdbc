@@ -15,6 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import model.services.CadastroConsulta;
 
 public class MainViewController implements Initializable {
 	private MenuItem menuItemCadastro;
@@ -25,7 +26,7 @@ public class MainViewController implements Initializable {
     
     @FXML
     public void onMenuItemCadastroAction( ) {
-    	loadView("/gui/CadastroDeUsuario.fxml");
+    	loadView2("/gui/CadastroDeUsuario.fxml");
     }
     @FXML
     public void onMenuItemConsultaAction( ) {
@@ -60,4 +61,27 @@ public class MainViewController implements Initializable {
 			Alerts.showAlert("IO Exception", "ERROR LOADING VIEW	",e.getMessage(), AlertType.ERROR);
 		} 
 	}
+	private void loadView2(String absoluteName) {
+		try {
+			
+		
+		FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+		VBox newVBox = loader.load();
+		
+		Scene mainScene = Main.getMainScene();
+		VBox mainVBox = (VBox) ((ScrollPane)mainScene.getRoot()).getContent();
+		Node mainMenu = mainVBox.getChildren().get(0);
+		mainVBox.getChildren().clear();
+		mainVBox.getChildren().add(mainMenu);
+		mainVBox.getChildren().addAll(newVBox.getChildren());
+		
+		CadastroController controller = loader.getController();
+		controller.setCadastroConsulta(new CadastroConsulta());
+		controller.updateTableView();
+		
+}
+		catch (IOException e ) {
+			Alerts.showAlert("IO Exception", "ERROR LOADING VIEW	",e.getMessage(), AlertType.ERROR);
+		} 
+}
 }
