@@ -26,7 +26,7 @@ public class MainViewController implements Initializable {
     
     @FXML
     public void onMenuItemCadastroAction( ) {
-    	System.out.println(" onMenuItemCadastroAction");
+    	loadView("/gui/CadastroDeUsuario.fxml");
     }
     @FXML
     public void onMenuItemConsultaAction( ) {
