@@ -17,7 +17,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
 public class MainViewController implements Initializable {
-    @FXML
 	private MenuItem menuItemCadastro;
     @FXML
     private MenuItem menuItemConsulta;
